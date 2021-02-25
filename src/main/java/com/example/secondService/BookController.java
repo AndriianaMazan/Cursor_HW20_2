@@ -12,12 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@Data
 public class BookController {
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final String urlBooks = "http://localhost:8080/books";
+    private final String urlBooks = "http://library/books";
 
     @GetMapping("/books")
     public List<Book> getAllBooks() {
