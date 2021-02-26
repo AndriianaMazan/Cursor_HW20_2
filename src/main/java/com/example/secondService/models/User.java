@@ -1,15 +1,13 @@
 package com.example.secondService.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Component
-@Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class User implements Serializable {
     private Integer id;
     private String name;

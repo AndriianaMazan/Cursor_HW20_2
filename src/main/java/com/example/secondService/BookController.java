@@ -2,7 +2,6 @@ package com.example.secondService;
 
 import com.example.secondService.models.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +12,15 @@ import java.util.stream.Collectors;
 
 @RestController
 public class BookController {
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
     private final String urlBooks = "http://library/books";
+
+    public BookController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+        objectMapper = new ObjectMapper();
+    }
 
     @GetMapping("/books")
     public List<Book> getAllBooks() {
@@ -30,4 +34,5 @@ public class BookController {
     public Book getBookById(@PathVariable("bookId") Long bookId) {
         return restTemplate.getForObject(urlBooks + "/" + bookId, Book.class);
     }
+
 }
